@@ -4,4 +4,5 @@ The script in the first level load the neccesary packages and then load the appr
 
 ## CodeBook
 
-Each row represnts a measurement and each column represents the average of each variable for each activity in each subject. 
+Each row represnts a measurement and each column represents the average of each variable for each activity in each subject.
+The names of each column describe the mesured values. For example the the Activity_Label is describes the wlaking, sitting and ... 
