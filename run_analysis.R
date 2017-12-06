@@ -1,5 +1,6 @@
 # Loading neccesary packages
 library(reshape2)
+library(data.table)
 
 # Loading neccesary data
 activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt")[ ,2]
@@ -54,6 +55,12 @@ melt_data = melt(data, id = id_labels, measure.vars = data_labels)
 
 # Apply mean function to dataset
 tidy_data = dcast(melt_data, Subject + Activity_Label ~ variable, mean)
+
+# Cleaning the column names
+names(tidy_data) <- gsub("\\(|\\)", "", names(tidy_data), perl = TRUE)
+names(tidy_data) <- gsub("-m", "M", names(tidy_data), perl = TRUE)
+names(tidy_data) <- gsub("-s", "S", names(tidy_data), perl = TRUE)
+names(tidy_data) <- gsub("-", "", names(tidy_data), perl = TRUE)
 
 # Creating the tidy_data.txt
 write.table(tidy_data, file = "./tidy_data.txt")
